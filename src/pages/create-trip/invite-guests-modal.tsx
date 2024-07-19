@@ -61,10 +61,7 @@ export function InviteGuestsModal({
               className="bg-transparent text-lg placeholder-zinc-400 outline-none flex-1"
             />
           </div>
-          <Button
-            type="submit"
-            variant="primary"
-          >
+          <Button type="submit" variant="primary">
             Convidar
             <Plus className="size-5" />
           </Button>

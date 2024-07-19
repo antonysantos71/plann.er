@@ -5,7 +5,9 @@ interface CreateActivityModalProps {
   closeCreateActivityModal: () => void;
 }
 
-export function CreateActivityModal({closeCreateActivityModal}: CreateActivityModalProps) {
+export function CreateActivityModal({
+  closeCreateActivityModal,
+}: CreateActivityModalProps) {
   return (
     <div className="fixed inset-0 bg-black/60 flex items-center justify-center">
       <div className="w-[640px] rounded-xl py-5 px-6 shadow-shape bg-zinc-900 space-y-5">
@@ -43,14 +45,12 @@ export function CreateActivityModal({closeCreateActivityModal}: CreateActivityMo
                   placeholder="Horario e data"
                   className="bg-transparent text-lg placeholder-zinc-400 outline-none flex-1 "
                 />
-              </div>                  
+              </div>
             </div>
-            <Button size="full">
-              Salvar atividade 
-            </Button>
+            <Button size="full">Salvar atividade</Button>
           </div>
         </form>
       </div>
     </div>
-  )
+  );
 }

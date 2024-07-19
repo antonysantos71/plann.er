@@ -1,5 +1,7 @@
 import { FormEvent, useState } from "react";
+import { DateRange } from "react-day-picker";
 import { useNavigate } from "react-router-dom";
+import { api } from "../../lib/axios";
 import { ConfirmTripModal } from "./confirm-trip-modal";
 import { InviteGuestsModal } from "./invite-guests-modal";
 import { DestinationAndDateStep } from "./steps/destination-and-date-step";
@@ -9,10 +11,18 @@ export function CreateTripPage() {
   const navigate = useNavigate();
   const [isGuestsInputOpen, setIsGuestsInputOpen] = useState(false);
   const [isGuestsModalOpend, setIsGuestsModalOpend] = useState(false);
+
+  const [destination, setDestination] = useState('');
+  const [ownerName, setOwnerName] = useState('');
+  const [ownerEmail, setOwnerEmail] = useState('');
+  const [eventStartAndEndDates, setEventStartAndEndDates] = useState<DateRange | undefined>();
+  
   const [emailsToInvite, setEmailsToInvite] = useState([
     "antonysantos@gmail.com",
   ]);
   const [isConfirmTripModalOpen, setIsConfirmTripModalOpen] = useState(false);
+
+  
 
   function openGuestsInput() {
     setIsGuestsInputOpen(true);
@@ -59,9 +69,44 @@ export function CreateTripPage() {
     setEmailsToInvite(newEmailsList);
   }
 
-  function createTrip(event: FormEvent<HTMLFormElement>) {
+  async function createTrip(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    navigate("/trips/1");
+
+    if (!destination) {
+      return;
+    }
+
+    if (!eventStartAndEndDates?.from || !eventStartAndEndDates?.to) {
+      return;
+    }
+
+    if (emailsToInvite.length === 0) {
+      return;
+    }
+
+    if (!ownerName || !ownerEmail) {
+      return;
+    }
+
+    try {
+      const response = await api.post('/trips', {
+        destination,
+        starts_at: eventStartAndEndDates.from,
+        ends_at: eventStartAndEndDates.to,
+        emails_to_invite: emailsToInvite,
+        owner_name: ownerName,
+        owner_email: ownerEmail
+      });
+
+      const tripId = response.data.id; // Assumindo que o ID da viagem é retornado pela API
+
+      // Navega para a página da viagem criada
+      navigate(`/trips/${tripId}`);
+    } catch (error) {
+      console.error('Erro ao criar viagem:', error);
+      // Trate o erro conforme necessário (ex: exibir uma mensagem de erro)
+    }
+
   }
 
   return (
@@ -78,6 +123,9 @@ export function CreateTripPage() {
             closeGuestsInput={closeGuestsInput}
             openGuestsInput={openGuestsInput}
             isGuestsInputOpen={isGuestsInputOpen}
+            setDestination={setDestination}
+            eventStartAndEndDates={eventStartAndEndDates}
+            setEventStartAndEndDates={setEventStartAndEndDates}
           />
 
           {isGuestsInputOpen && (
@@ -115,6 +163,8 @@ export function CreateTripPage() {
         <ConfirmTripModal
           closeConfirmTripModal={closeConfirmTripModal}
           createTrip={createTrip}
+          setOwnerName={setOwnerName}
+          setOwnerEmail={setOwnerEmail}
         />
       )}
     </div>

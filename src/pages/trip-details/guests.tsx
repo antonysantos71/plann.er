@@ -13,7 +13,7 @@ export function Guests() {
               jessica.santos@gmail.com
             </span>
           </div>
-          <CircleDashed className="text-zinc-400 size-5 shrink-0"/>
+          <CircleDashed className="text-zinc-400 size-5 shrink-0" />
         </div>
         <div className="flex items-center justify-between gap-4">
           <div className="space-y-1.5">
@@ -22,7 +22,7 @@ export function Guests() {
               antony.santos@gmail.com
             </span>
           </div>
-          <CircleDashed className="text-zinc-400 size-5 shrink-0"/>
+          <CircleDashed className="text-zinc-400 size-5 shrink-0" />
         </div>
       </div>
       <Button variant="secondary" size="full">
@@ -30,5 +30,5 @@ export function Guests() {
         Gerenciar convidados
       </Button>
     </div>
-  )
+  );
 }

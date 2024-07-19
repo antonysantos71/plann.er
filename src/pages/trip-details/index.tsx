@@ -8,9 +8,9 @@ import { Guests } from "./guests";
 import { ImpontantsLinks } from "./impontants-links";
 
 export function TripDetailsPage() {
+  const [isCreateActivityModalOpen, setIsCreateActivityModalOpen] =
+    useState(false);
 
-  const [isCreateActivityModalOpen, setIsCreateActivityModalOpen] = useState(false);
-  
   function opendCreateActivityModal() {
     setIsCreateActivityModalOpen(true);
   }
@@ -18,7 +18,7 @@ export function TripDetailsPage() {
   function closeCreateActivityModal() {
     setIsCreateActivityModalOpen(false);
   }
-  
+
   return (
     <div className="max-w-6xl px-6 py-10 mx-auto space-y-8">
       <DestinationAndDateHeader />
@@ -34,7 +34,6 @@ export function TripDetailsPage() {
           </div>
 
           <Activities />
-          
         </div>
 
         <div className="w-80 space-y-6">
@@ -45,8 +44,8 @@ export function TripDetailsPage() {
       </main>
 
       {isCreateActivityModalOpen && (
-        <CreateActivityModal 
-          closeCreateActivityModal={closeCreateActivityModal}  
+        <CreateActivityModal
+          closeCreateActivityModal={closeCreateActivityModal}
         />
       )}
     </div>

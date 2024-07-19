@@ -8,27 +8,37 @@ export function ImpontantsLinks() {
       <div className="space-y-5">
         <div className="flex items-center justify-between gap-4">
           <div className="space-y-1.5">
-            <span className="block text-zinc-100 font-medium">Reserva do Airbi</span>
-            <a href="#" className="block text-xs text-zinc-400 truncate hover:text-zinc-200 max-w-[250px]">
+            <span className="block text-zinc-100 font-medium">
+              Reserva do Airbi
+            </span>
+            <a
+              href="#"
+              className="block text-xs text-zinc-400 truncate hover:text-zinc-200 max-w-[250px]"
+            >
               https://rocktesetat.commmmmmmmmmmmmmmmmmmm
             </a>
           </div>
-          <Link2 className="text-zinc-400 size-5 shrink-0"/>
+          <Link2 className="text-zinc-400 size-5 shrink-0" />
         </div>
         <div className="flex items-center justify-between gap-4">
           <div className="space-y-1.5">
-            <span className="block text-zinc-100 font-medium">Reserva do Airbi</span>
-            <a href="#" className="block text-xs text-zinc-400 truncate hover:text-zinc-200 max-w-[250px]">
+            <span className="block text-zinc-100 font-medium">
+              Reserva do Airbi
+            </span>
+            <a
+              href="#"
+              className="block text-xs text-zinc-400 truncate hover:text-zinc-200 max-w-[250px]"
+            >
               https://rocktesetat.commmmmmmmmmmmmmmmmmmm
             </a>
           </div>
-          <Link2 className="text-zinc-400 size-5 shrink-0"/>
+          <Link2 className="text-zinc-400 size-5 shrink-0" />
         </div>
       </div>
       <Button variant="secondary" size="full">
         <Plus className="size-5" />
-        Cadastrar Link  
+        Cadastrar Link
       </Button>
     </div>
-  )
+  );
 }
